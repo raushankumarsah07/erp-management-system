@@ -1,257 +1,250 @@
 <div align="center">
 
-# 🏢 Apex Enterprise ERP Management System
-### *Modern, Full-Stack MERN Enterprise Resource Planning Web Application*
+# ✦ Apex Enterprise ERP
 
-[![React](https://img.shields.io/badge/Frontend-React%2018-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
-[![React Bootstrap](https://img.shields.io/badge/UI-React%20Bootstrap%205-41E0FD?style=for-the-badge&logo=bootstrap&logoColor=black)](https://react-bootstrap.github.io/)
-[![Node.js](https://img.shields.io/badge/Backend-Node.js%20(ES%20Modules)-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
-[![Express.js](https://img.shields.io/badge/Server-Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
-[![MongoDB](https://img.shields.io/badge/Database-MongoDB%20Atlas-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
-[![JWT](https://img.shields.io/badge/Security-JWT%20%2B%20Bcrypt-FFB300?style=for-the-badge&logo=jsonwebtokens&logoColor=black)](https://jwt.io/)
+### One workspace for every operation that keeps your business moving.
 
-<p align="center">
-  <b>A comprehensive ERP solution designed for mid-sized organizations to streamline supply chain, inventory tracking, customer relationships, purchase/sales lifecycles, goods receipt inspection (GRN), and PDF invoice generation.</b>
+<p>
+  <strong>A modern, role-aware MERN ERP for inventory, sales, procurement, customers, suppliers, GRNs, and billing.</strong>
 </p>
 
-[Key Features](#-key-features) • [Tech Stack](#-technology-stack) • [Live Screenshots](#-application-modules--walkthrough) • [Getting Started](#-getting-started) • [API Reference](#-api-endpoints-reference) • [Demo Credentials](#-pre-configured-demo-accounts)
+<p>
+  <a href="#-why-apex-erp">Why Apex?</a> ·
+  <a href="#-product-tour">Product tour</a> ·
+  <a href="#-quick-start">Quick start</a> ·
+  <a href="#-api-snapshot">API snapshot</a> ·
+  <a href="#-demo-access">Demo access</a>
+</p>
 
----
+<br />
+
+[![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react&logoColor=111827)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-6-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vite.dev/)
+[![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?style=flat-square&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Express](https://img.shields.io/badge/Express-4-111827?style=flat-square&logo=express&logoColor=white)](https://expressjs.com/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-8-47A248?style=flat-square&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![JWT](https://img.shields.io/badge/Auth-JWT%20%2B%20RBAC-F59E0B?style=flat-square&logo=jsonwebtokens&logoColor=111827)](https://jwt.io/)
 
 </div>
 
-## 🌟 Executive Overview
+<br />
 
-**Apex ERP** connects core business operations into a unified, role-governed platform. Built with modern web standards, it provides executives, sales representatives, procurement teams, and warehouse managers with the real-time data they need to make informed decisions.
+> **Apex ERP turns scattered business activity into a clear operating picture.**
+> Give every team the right view, the right permissions, and the right action at the right time.
+
+---
+
+## ✨ Why Apex ERP?
+
+| Signal | What Apex delivers |
+| :--- | :--- |
+| **Clarity** | Executive KPIs, order status, revenue trends, and inventory health in one dashboard |
+| **Control** | JWT authentication, protected routes, and role-based permissions across every module |
+| **Continuity** | Connect the complete flow from purchase order → GRN → stock → sales order → invoice |
+| **Speed** | Quick demo accounts, searchable tables, reusable forms, and one-click PDF exports |
+
+## 🧭 Product Tour
+
+### 📊 Command center
+
+See revenue, sales, purchases, pending restocks, and operational trends without jumping between tools.
+
+### 📦 Inventory that stays current
+
+Manage SKUs, stock levels, categories, reorder points, and low-stock alerts with automated status badges.
+
+### 🤝 Relationships in one place
+
+Keep customer and supplier profiles, contacts, payment terms, credit balances, and tax information organized.
+
+### 🔄 Orders with a visible lifecycle
+
+Build multi-item sales and purchase orders with automatic totals, tax, discounts, and status transitions:
+
+`Pending` → `Approved` → `Shipped` → `Delivered` → `Cancelled`
+
+### 🏭 Receiving that updates stock
+
+Create Goods Receipt Notes, record inspected/accepted/rejected quantities, capture batch details, and automatically increment inventory.
+
+### 🧾 Billing ready to share
+
+Generate invoices from sales orders, track `Unpaid` / `Paid` / `Overdue` states, and export polished PDFs directly from the browser.
+
+### 🛡️ Admin governance
+
+Manage users, roles, active status, permissions, and the built-in OpenAPI documentation explorer.
+
+---
+
+## 🏗️ How It Fits Together
 
 ```mermaid
-graph TD
-    A[User / Client] -->|JWT Auth & RBAC| B[React 18 Frontend]
-    B -->|REST API Requests| C[Express.js ES Modules Backend]
-    C -->|Mongoose ODM| D[(MongoDB Database)]
-    
-    subgraph Core Business Modules
-        E[Products & Inventory]
-        F[Customers & Suppliers]
-        G[Sales & Purchase Orders]
-        H[Goods Receipt Notes - GRN]
-        I[Invoicing & jsPDF Export]
-    end
-    
-    C --- E
-    C --- F
-    C --- G
-    C --- H
-    C --- I
+flowchart LR
+    U[Teams & Managers] --> UI[React + Vite]
+    UI -->|JWT REST calls| API[Express API]
+    API --> AUTH[Auth + RBAC]
+    API --> DB[(MongoDB)]
+    API --> MOD[ERP Modules]
+    MOD --> INV[Inventory]
+    MOD --> ORD[Sales & Purchasing]
+    MOD --> CRM[Customers & Suppliers]
+    MOD --> BILL[GRN & Invoices]
 ```
 
----
+## 🧰 Technology Stack
 
-## 🚀 Key Features
-
-### 🔐 1. Authentication & Role-Based Access Control (RBAC)
-- **Token-Based Auth**: Secure JWT authentication with configurable expiration and session storage.
-- **Granular Permissions**: Role-specific navigation and action guards for `admin`, `sales`, `purchase`, `inventory`, and `finance`.
-- **1-Click Quick Demo Login**: Instant credential fill buttons on the login screen for testing each role.
-
-### 📊 2. Executive Analytics Dashboard
-- **Real-Time KPIs**: Track Total Revenue, Sales Volumes, Purchase Outlays, and Pending Restocks.
-- **Interactive Charts**:
-  - **Financial Comparison**: Monthly Sales vs Purchases trend area chart powered by **Recharts**.
-  - **Status Distribution**: Donut charts visualizing active order lifecycles.
-- **Inventory Health Feed**: Automatic tracking of low-stock items with reorder point warnings.
-
-### 📦 3. Product & Inventory Management
-- **Full CRUD Support**: Add, update, search, and delete products with SKU, title, category, and unit metrics.
-- **Automated Stock Status**: Dynamic badges for `In Stock`, `Low Stock`, and `Out of Stock`.
-- **Customizable Reorder Point**: Automatic triggers alerting managers before inventory depletes.
-
-### 🤝 4. Customer & Supplier Directories
-- Comprehensive partner contact books storing phone numbers, emails, physical addresses, tax/VAT numbers, and credit balances.
-- Configurable **payment terms** (`Net 15`, `Net 30`, `Due on Receipt`, etc.).
-
-### 🛒 5. Sales & Purchase Order Lifecycles
-- **Interactive Order Builder**: Dynamic line item creator with automated quantity × unit price calculations.
-- **Automatic Financial Calculations**: Subtotal, configurable tax rate (10%), discount adjustments, and grand total.
-- **Order Stages**: Transition orders through `Pending` ➔ `Approved` ➔ `Shipped` ➔ `Delivered` ➔ `Cancelled`.
-
-### 🏭 6. Goods Receipt Notes (GRN) & Automated Restock
-- **Purchase Order Linkage**: Generates GRNs with pre-populated order items.
-- **Warehouse Inspection**: Record inspected, accepted, and rejected quantities alongside batch/lot numbers.
-- **Automated Inventory Stock Increment**: Accepting a GRN automatically increases product quantities in MongoDB!
-
-### 🧾 7. Invoicing & Client-Side PDF Export
-- Generate professional invoices linked to Sales Orders in 1-click.
-- **PDF Export Engine**: Built-in **jsPDF + AutoTable** integration to download branded PDF invoices locally.
-- Real-time payment tracking (`Unpaid` ➔ `Paid` ➔ `Overdue`).
-
-### 🛡️ 8. Admin User Management & API Explorer
-- Control user permissions, update employee roles, and activate/deactivate accounts.
-- Built-in **OpenAPI / Postman Explorer** to view endpoints and export JSON specs.
-
----
-
-## 🛠️ Technology Stack
-
-| Layer | Technologies Used |
+| Area | Tools |
 | :--- | :--- |
-| **Frontend Framework** | **React 18**, **Vite** |
-| **UI & Styling** | **React Bootstrap 5**, **Bootstrap Icons**, **Lucide React** |
-| **State & Routing** | **Context API**, **React Router v6** |
-| **HTTP Client & Notifications** | **Axios** (with JWT Bearer interceptors), **React-Toastify** |
-| **Data Visualization & PDF** | **Recharts**, **jsPDF**, **jspdf-autotable** |
-| **Backend Engine** | **Node.js (v20+)**, **Express.js (ES Modules - `"type": "module"`)** |
-| **Database & ODM** | **MongoDB Atlas / Local**, **Mongoose** |
-| **Security & Validation** | **JSON Web Tokens (JWT)**, **Bcrypt.js**, **Express-Validator** |
+| **Experience** | React 18, React Router 6, React Bootstrap, Bootstrap Icons, Lucide React |
+| **Frontend runtime** | Vite, Axios, Context API, React Toastify |
+| **Analytics & documents** | Recharts, jsPDF, jspdf-autotable |
+| **Backend runtime** | Node.js 20+, Express 4, ES Modules |
+| **Data layer** | MongoDB, Mongoose 8 |
+| **Security** | JWT, bcryptjs, protected routes, role authorization |
 
----
+## 📁 Project Map
 
-## 📁 Repository Structure
-
-```
+```text
 erp-management-system/
-├── backend/                        # Node.js + Express.js API Server
+├── backend/
 │   ├── src/
-│   │   ├── config/                 # MongoDB database connection
-│   │   ├── controllers/            # Controller business logic
-│   │   ├── middleware/             # Auth, role authorization, error handling
-│   │   ├── models/                 # Mongoose schemas (User, Product, Order, GRN, etc.)
-│   │   ├── routes/                 # Express API routes
-│   │   ├── seed/                   # Database seeder with sample data
-│   │   └── server.js               # Express application entrypoint
-│   ├── .env.example                # Sample environment variables
-│   └── package.json                # Backend dependencies and scripts
-│
-└── frontend/                       # React 18 + React Bootstrap Web Application
+│   │   ├── config/          # Database connection
+│   │   ├── controllers/     # Business logic
+│   │   ├── middleware/      # Auth, roles, errors
+│   │   ├── models/          # MongoDB schemas
+│   │   ├── routes/          # REST endpoints
+│   │   ├── seed/            # Demo data
+│   │   └── server.js        # API entrypoint
+│   ├── .env.example
+│   └── package.json
+└── frontend/
     ├── src/
-    │   ├── api/                    # Axios client instance & service modules
-    │   ├── components/             # Reusable UI components & layouts
-    │   ├── context/                # Global AuthContext & user role state
-    │   ├── pages/                  # Application views (Dashboard, Orders, Invoices, etc.)
-    │   ├── styles/                 # Custom CSS design system
-    │   ├── App.jsx                 # Routing configuration
-    │   └── main.jsx                # React DOM entrypoint
-    ├── vite.config.js              # Vite server & proxy configuration
-    └── package.json                # Frontend dependencies
+    │   ├── api/             # Axios client and services
+    │   ├── components/      # Shared UI
+    │   ├── context/         # Auth state
+    │   ├── pages/           # ERP screens
+    │   └── styles/          # Design system
+    ├── vite.config.js
+    └── package.json
 ```
 
 ---
 
-## ⚡ Getting Started
+## ⚡ Quick Start
 
 ### Prerequisites
-- **Node.js** (v18 or higher)
-- **MongoDB** (Local instance or MongoDB Atlas Connection String)
-- **npm** or **yarn**
 
----
+- Node.js **18+** (20+ recommended)
+- MongoDB local instance or MongoDB Atlas
+- npm
 
-### 1️⃣ Clone the Repository
+### 1. Configure the backend
+
 ```bash
-git clone <YOUR_REPOSITORY_URL>
-cd erp-management-system
+cd backend
+npm install
+cp .env.example .env
 ```
 
----
+Update `.env` with your MongoDB connection string and secrets:
 
-### 2️⃣ Backend Setup
-1. Navigate to the `backend` folder:
-   ```bash
-   cd backend
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Configure `.env` file:
-   ```env
-   PORT=5001
-   NODE_ENV=development
-   MONGO_URI=mongodb://127.0.0.1:27017/erp_management
-   JWT_SECRET=your_super_secret_jwt_key_here
-   JWT_EXPIRE=7d
-   CLIENT_URL=http://localhost:5173
-   ```
-4. **Seed Sample Demo Data** (Creates demo users, orders, products, and invoices):
-   ```bash
-   npm run seed
-   ```
-5. Start the backend development server:
-   ```bash
-   npm run dev
-   ```
-   *The API will be available at `http://localhost:5001`.*
+```env
+PORT=5001
+NODE_ENV=development
+MONGO_URI=mongodb://127.0.0.1:27017/erp_management
+JWT_SECRET=replace_with_a_secure_secret
+JWT_EXPIRE=7d
+CLIENT_URL=http://localhost:5173
+```
 
----
+Seed demo data and start the API:
 
-### 3️⃣ Frontend Setup
-1. Open a new terminal and navigate to `frontend`:
-   ```bash
-   cd frontend
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Start the Vite development server:
-   ```bash
-   npm run dev
-   ```
-4. Open **`http://localhost:5173`** in your browser.
+```bash
+npm run seed
+npm run dev
+```
 
----
+The backend runs at **http://localhost:5001**.
 
-## 🔑 Pre-Configured Demo Accounts
+### 2. Launch the frontend
 
-For quick testing and grading, pre-seeded accounts with password `password123` are available:
+Open a second terminal:
 
-| Role | Email | Password | Allowed Modules |
-| :--- | :--- | :--- | :--- |
-| **👑 Admin** | `admin@erp.com` | `password123` | **Full Universal Access** |
-| **💼 Sales** | `sales@erp.com` | `password123` | Dashboard, Products, Customers, Sales Orders, Invoices |
-| **📦 Purchase** | `purchase@erp.com` | `password123` | Dashboard, Products, Suppliers, Purchase Orders, GRN |
-| **🏭 Inventory** | `inventory@erp.com` | `password123` | Dashboard, Products, Suppliers, GRN, Stock Alerts |
-| **💵 Finance** | `finance@erp.com` | `password123` | Dashboard, Customers, Sales Orders, Invoices & Billing |
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-*(Tip: You can also click the quick-fill buttons directly on the Login page!)*
+Open **http://localhost:5173**.
+
+> The Vite development proxy forwards `/api` requests to the backend. Keep both terminals running while using the app.
+
+## 🔑 Demo Access
+
+All seeded demo accounts use the password `password123`.
+
+| Role | Email | Access highlights |
+| :--- | :--- | :--- |
+| 👑 **Admin** | `admin@erp.com` | Full universal access |
+| 💼 **Sales** | `sales@erp.com` | Products, customers, sales orders, invoices |
+| 📦 **Purchase** | `purchase@erp.com` | Suppliers, purchase orders, GRN |
+| 🏭 **Inventory** | `inventory@erp.com` | Products, suppliers, GRN, stock alerts |
+| 💵 **Finance** | `finance@erp.com` | Customers, sales orders, invoices, billing |
+
+You can also use the quick-fill account buttons on the login screen.
 
 ---
 
-## 📡 API Endpoints Reference
+## 📡 API Snapshot
 
-| Module | Method | Endpoint | Description | Access |
-| :--- | :---: | :--- | :--- | :--- |
-| **Auth** | `POST` | `/api/auth/register` | Register new employee | Public |
-| **Auth** | `POST` | `/api/auth/login` | Authenticate user & get JWT | Public |
-| **Auth** | `GET` | `/api/auth/me` | Fetch active profile | Private |
-| **Products** | `GET` | `/api/products` | List products (`?search=`, `?category=`) | Private |
-| **Products** | `POST` | `/api/products` | Create a new product | Admin, Inventory |
-| **Products** | `PUT` | `/api/products/:id` | Update product details | Admin, Inventory |
-| **Products** | `DELETE`| `/api/products/:id` | Remove a product | Admin |
-| **Customers** | `GET` | `/api/customers` | List all customers | Private |
-| **Customers** | `POST` | `/api/customers` | Add new customer profile | Admin, Sales |
-| **Suppliers** | `GET` | `/api/suppliers` | List all suppliers | Private |
-| **Suppliers** | `POST` | `/api/suppliers` | Add new vendor profile | Admin, Purchase |
-| **Sales Orders**| `GET` | `/api/sales-orders` | List sales orders with status | Private |
-| **Sales Orders**| `POST` | `/api/sales-orders` | Create multi-item sales order | Admin, Sales |
-| **Sales Orders**| `PUT` | `/api/sales-orders/:id` | Update order status | Admin, Sales |
-| **Purchase** | `GET` | `/api/purchase-orders`| List procurement orders | Private |
-| **Purchase** | `POST` | `/api/purchase-orders`| Create new purchase order | Admin, Purchase |
-| **GRN** | `POST` | `/api/grn` | Create GRN & increment stock | Admin, Inventory |
-| **Invoices** | `GET` | `/api/invoices` | List billing invoices | Private |
-| **Invoices** | `POST` | `/api/invoices` | Issue invoice from sales order | Admin, Sales, Finance |
-| **Dashboard** | `GET` | `/api/dashboard/stats`| Get aggregated KPI stats & charts | Private |
-| **Users** | `GET` | `/api/users` | List all users (Admin only) | Admin |
-| **Docs** | `GET` | `/api/docs` | OpenAPI 3.0 JSON Specification | Public |
+| Domain | Method | Endpoint | Access |
+| :--- | :---: | :--- | :--- |
+| Auth | `POST` | `/api/auth/register` | Public |
+| Auth | `POST` | `/api/auth/login` | Public |
+| Auth | `GET` | `/api/auth/me` | Private |
+| Products | `GET` | `/api/products` | Private |
+| Products | `POST` | `/api/products` | Admin, Inventory |
+| Customers | `GET` / `POST` | `/api/customers` | Private / Admin, Sales |
+| Suppliers | `GET` / `POST` | `/api/suppliers` | Private / Admin, Purchase |
+| Sales orders | `GET` / `POST` | `/api/sales-orders` | Private / Admin, Sales |
+| Purchase orders | `GET` / `POST` | `/api/purchase-orders` | Private / Admin, Purchase |
+| GRN | `POST` | `/api/grn` | Admin, Inventory |
+| Invoices | `GET` / `POST` | `/api/invoices` | Private / Admin, Sales, Finance |
+| Dashboard | `GET` | `/api/dashboard/stats` | Private |
+| API docs | `GET` | `/api/docs` | Public |
 
----
+Health check:
 
-## 🔒 Security Best Practices
-- **Password Hashing**: Industry standard `bcryptjs` with salt factor 10.
-- **Route Guards**: Client-side protected route wrappers combined with backend role-verification middleware.
-- **Environment Isolation**: Database credentials, MongoDB Atlas strings, and JWT secrets are strictly managed in `.env`.
+```bash
+curl http://localhost:5001/api/health
+```
 
----
+## 🔐 Security Notes
 
-## 📜 License
-This project is developed for enterprise demonstration purposes. You are free to customize and expand it for production workflows.
+- Passwords are hashed with `bcryptjs`.
+- JWT secrets and database credentials belong in `.env`, never in source control.
+- Frontend protected routes are paired with backend authentication and role middleware.
+- Replace every demo secret before deploying to a real environment.
+
+## 🛠️ Useful Commands
+
+| Command | Purpose |
+| :--- | :--- |
+| `cd backend && npm run dev` | Start the API with watch mode |
+| `cd backend && npm run seed` | Reset and seed demonstration data |
+| `cd frontend && npm run dev` | Start the Vite frontend |
+| `cd frontend && npm run build` | Create a production frontend build |
+
+## 📄 License
+
+Built for enterprise demonstration and learning. Customize, extend, and adapt it for your own business workflows.
+
+<div align="center">
+
+### Built to make operations feel simpler.
+
+**Apex Enterprise ERP** · React + Express + MongoDB
+
+</div>

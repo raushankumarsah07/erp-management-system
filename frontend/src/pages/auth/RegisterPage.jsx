@@ -49,7 +49,11 @@ const RegisterPage = () => {
       toast.success('Registration successful! Welcome to the team.');
       navigate('/dashboard');
     } catch (err) {
-      const msg = err.response?.data?.message || err.message || 'Registration failed';
+      const msg = err.response?.data?.message
+        || (err.code === 'ERR_NETWORK'
+          ? 'Cannot reach the ERP backend. Start the backend server with "cd backend && npm start", then try again.'
+          : err.message)
+        || 'Registration failed';
       setError(msg);
       toast.error(msg);
     } finally {

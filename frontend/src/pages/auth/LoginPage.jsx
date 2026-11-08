@@ -24,7 +24,11 @@ const LoginPage = () => {
       toast.success('Welcome back to Enterprise ERP!');
       navigate('/dashboard');
     } catch (err) {
-      const msg = err.response?.data?.message || err.message || 'Failed to login';
+      const msg = err.response?.data?.message
+        || (err.code === 'ERR_NETWORK'
+          ? 'Cannot reach the ERP backend. Start the backend server with "cd backend && npm start", then try again.'
+          : err.message)
+        || 'Failed to login';
       setError(msg);
       toast.error(msg);
     } finally {

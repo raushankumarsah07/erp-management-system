@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
+// Use Vite's proxy in development so the browser does not depend on a
+// hard-coded backend hostname or port. A deployed environment can override it.
+const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
 
 const axiosClient = axios.create({
   baseURL: API_BASE_URL,
